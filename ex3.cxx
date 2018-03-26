@@ -1,29 +1,89 @@
 #include <bits/stdc++.h>
-using namespace std;
 
-void findPowerSet(vector<int> const &S, int n)
+
+
+std::map<int,std::string> powerset;
+std::map<std::string,int> powerset2;
+std::vector<char> symbols;
+
+
+void findPowerSet(std::vector<int> const S, int n)
 {
-    // N stores total number of subsets
-    int N = pow(2, n);
+	int N = pow(2, n);
+	for (int i = 0; i < N; i++)
+    	{
+		std::string str = "N";
+        	for (int j = 0; j < n; j++)
+        	{
+           	 if (i & (1 << j)){
+                	 str.push_back(S[j]);
+		 }
+        	}
+		if(str[0]=='N' && str.size()>1)
+			str.erase(0,1);
+        	powerset[i]=str;
+        	powerset2[str]=i;
+		}
+}
 
-    // generate each subset one by one
-    for (int i = 0; i < N; i++)
-    {
-		// check every bit of i
-        for (int j = 0; j < n; j++)
-        {
-            // if j'th bit of i is set, print S[j]
-            if (i & (1 << j))
-                cout << S[j] << " ";
-        }
-        cout << endl;
+
+class State{
+public:
+	std::string name;
+	std::string trans;
+
+	State(std::string name){
+		this->name = name;
 	}
+
+	void add_trans(std::string trans){
+		this->trans = trans;
+	}
+
+};
+
+std::string get_trans(char S, char sym){
+
+	std::string trans;
 }
 
 int main()
 {
-    vector<int> S = { 1, 2, 3 };
-	int n = S.size();
+	int n = 3;
+	int N = pow(2, n);
 
-    findPowerSet(S, n);
+	std::vector<int> s;
+	for(char i=48;i<48+n;i++)
+		s.push_back(i);
+	findPowerSet(s, n);
+
+
+	std::vector<State> states;
+
+	for(int i=0;i<N;i++)
+		states.push_back(State(powerset[i]));
+
+	
+	std::vector<std::string> transitions;
+	transitions.push_back("0a0");
+	transitions.push_back("0a1");
+	transitions.push_back("0b0");
+	transitions.push_back("1b2");
+
+	std::cout<<"NFA,\n";
+	for(auto t:transitions){
+		std::cout<<t[0]<<" -- "<<t[1]<<" --> "<<t[2]<<"\n";
+		symbols.push_back(t[1]);
+	}
+
+
+
+
+
+
+
+	
+
+
+
 }

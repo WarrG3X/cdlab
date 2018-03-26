@@ -108,6 +108,14 @@ public:
 
     }
 
+    void accept(){
+
+    if(stk.size()==2 && stk.back()==start)
+        std::cout<<"\nAccepted\n";
+    else
+        std::cout<<"\nRejected\n";
+    }
+
 };
 
 
@@ -155,6 +163,7 @@ int main(){
     parser.reduce();
     parser.reduce();
     parser.reduce();
+    parser.accept();
 
 
 

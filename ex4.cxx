@@ -11,6 +11,7 @@ int main(){
 	//std::cin>>prod;
 	//prod = "A->ABc/Aa/a";
 	prod = "A->AC/Aad/bd/c";
+	std::vector<std::string> v= {"sdds","dsgsd"};
 	
 	char non_term = prod[0];
 	prod.erase(0,3);

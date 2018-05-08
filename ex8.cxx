@@ -163,6 +163,7 @@ int main(){
     parser.reduce();
     parser.reduce();
     parser.reduce();
+    parser.display();
     parser.accept();
 
 
